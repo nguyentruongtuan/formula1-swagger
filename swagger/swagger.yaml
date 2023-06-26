@@ -1,0 +1,733 @@
+openapi: 3.0.3
+info:
+  title: Formula1 system 
+  version: 1.0.0
+  contact:
+    email: denny.truongnguyen@gmail.com
+servers:
+  - url: http://localhost:3000/api
+
+
+paths:
+  /teams:
+    get:
+      tags:
+        - team
+      summary: Get all team entities
+      responses:
+        '200':
+          description: successfull
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+    post: 
+      tags:
+        - team 
+      summary: Create team entity 
+      requestBody:
+        description: Create a new team entity
+        content:
+          application/json: 
+            schema:
+              $ref: '#/components/schemas/TeamRequest'
+      responses:
+        '201':
+          description: created
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/Team'
+  /teams/{id}:
+    get:
+      tags:
+        - team
+      summary: Get a team
+      description: get a team
+      parameters:
+        - name: id
+          in: path
+          description: team id to get
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid team value
+        '200':
+          description: Get team
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/Team'
+    
+    delete:
+      tags:
+        - team
+      summary: Deletes a team
+      description: delete a team
+      parameters:
+        - name: id
+          in: path
+          description: team id to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid team value
+        '204':
+          description: No content
+    
+    put:
+      tags:
+        - team
+      summary: Update a team
+      description: update a team
+      parameters:
+        - name: id
+          in: path
+          description: team id to delete
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a new team entity
+        content:
+          application/json: 
+            schema:
+              $ref: '#/components/schemas/TeamRequest'      
+      responses:
+        '400':
+          description: Invalid team value
+        '200':
+          description: updated
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/Team'
+
+
+
+  /drivers:
+    get:
+      tags:
+        - driver
+      summary: Get all driver entities
+      parameters:
+        - in: query
+          name: country
+          schema: 
+            type: string
+        - in: query
+          name: grandsPrixEntered
+          schema: 
+            type: number
+        - in: query
+          name: worldChampionships
+          schema: 
+            type: string
+        - in: query
+          name: highestGridPosition
+          schema: 
+            type: number
+        - in: query
+          name: placeOfBirth
+          schema: 
+            type: string
+      responses:
+        '200':
+          description: successfull
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Driver'
+    post: 
+      tags:
+        - driver 
+      summary: Create driver entity 
+      requestBody:
+        description: Create a new driver entity
+        content:
+          application/json: 
+            schema:
+              $ref: '#/components/schemas/DriverRequest'
+      responses:
+        '201':
+          description: created
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/Driver'
+  /drivers/{id}:
+    get:
+      tags:
+        - driver
+      summary: Get a driver
+      description: get a driver
+      parameters:
+        - name: id
+          in: path
+          description: driver id to get
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid driver value
+        '200':
+          description: Get driver
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/Driver'
+    
+    delete:
+      tags:
+        - driver
+      summary: Deletes a driver
+      description: delete a driver
+      parameters:
+        - name: id
+          in: path
+          description: driver id to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid driver value
+        '204':
+          description: No content
+    
+    put:
+      tags:
+        - driver
+      summary: Update a driver
+      description: update a driver
+      parameters:
+        - name: id
+          in: path
+          description: driver id to delete
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a new driver entity
+        content:
+          application/json: 
+            schema:
+              $ref: '#/components/schemas/DriverRequest'      
+      responses:
+        '400':
+          description: Invalid driver value
+        '200':
+          description: updated
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/Driver'
+
+
+
+  /events:
+    get:
+      tags:
+        - event
+      summary: Get all event entities
+      responses:
+        '200':
+          description: successfull
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+    post: 
+      tags:
+        - event 
+      summary: Create event entity 
+      requestBody:
+        description: Create a new event entity
+        content:
+          application/json: 
+            schema:
+              $ref: '#/components/schemas/EventRequest'
+      responses:
+        '201':
+          description: created
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/Event'
+  /events/{id}:
+    get:
+      tags:
+        - event
+      summary: Get a event
+      description: get a event
+      parameters:
+        - name: id
+          in: path
+          description: event id to get
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid event value
+        '200':
+          description: Get event
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/Event'
+    
+    delete:
+      tags:
+        - event
+      summary: Deletes a event
+      description: delete a event
+      parameters:
+        - name: id
+          in: path
+          description: event id to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid event value
+        '204':
+          description: No content
+    
+    put:
+      tags:
+        - event
+      summary: Update a event
+      description: update a event
+      parameters:
+        - name: id
+          in: path
+          description: event id to delete
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a new event entity
+        content:
+          application/json: 
+            schema:
+              $ref: '#/components/schemas/EventRequest'      
+      responses:
+        '400':
+          description: Invalid event value
+        '200':
+          description: updated
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/Event'
+
+
+  /races:
+    get:
+      tags:
+        - race
+      summary: Get all race entities
+      responses:
+        '200':
+          description: successfull
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Race'
+    post: 
+      tags:
+        - race 
+      summary: Create race entity 
+      requestBody:
+        description: Create a new race entity
+        content:
+          application/json: 
+            schema:
+              $ref: '#/components/schemas/RaceRequest'
+      responses:
+        '201':
+          description: created
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/Race'
+  /races/{id}:
+    get:
+      tags:
+        - race
+      summary: Get a race
+      description: get a race
+      parameters:
+        - name: id
+          in: path
+          description: race id to get
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid race value
+        '200':
+          description: Get race
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/Race'
+    
+    delete:
+      tags:
+        - race
+      summary: Deletes a race
+      description: delete a race
+      parameters:
+        - name: id
+          in: path
+          description: race id to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid race value
+        '204':
+          description: No content
+    
+    put:
+      tags:
+        - race
+      summary: Update a race
+      description: update a race
+      parameters:
+        - name: id
+          in: path
+          description: race id to delete
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a new race entity
+        content:
+          application/json: 
+            schema:
+              $ref: '#/components/schemas/RaceRequest'      
+      responses:
+        '400':
+          description: Invalid race value
+        '200':
+          description: updated
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/Race'
+
+
+
+  /results:
+    get:
+      tags:
+        - result
+      summary: Get all result entities
+      responses:
+        '200':
+          description: successfull
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RaceResult'
+    post: 
+      tags:
+        - result 
+      summary: Create result entity 
+      requestBody:
+        description: Create a new result entity
+        content:
+          application/json: 
+            schema:
+              $ref: '#/components/schemas/RaceResultRequest'
+      responses:
+        '201':
+          description: created
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/RaceResult'
+  /results/{id}:
+    get:
+      tags:
+        - result
+      summary: Get a result
+      description: get a result
+      parameters:
+        - name: id
+          in: path
+          description: result id to get
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid result value
+        '200':
+          description: Get result
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/RaceResult'
+    
+    delete:
+      tags:
+        - result
+      summary: Deletes a result
+      description: delete a result
+      parameters:
+        - name: id
+          in: path
+          description: result id to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid result value
+        '204':
+          description: No content
+    
+    put:
+      tags:
+        - result
+      summary: Update a result
+      description: update a result
+      parameters:
+        - name: id
+          in: path
+          description: result id to delete
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a new result entity
+        content:
+          application/json: 
+            schema:
+              $ref: '#/components/schemas/RaceResultRequest'      
+      responses:
+        '400':
+          description: Invalid result value
+        '200':
+          description: updated
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/RaceResult'
+
+
+  /search:
+    get:
+      tags:
+        - search
+      parameters:
+        - in: query
+          name: keyword
+          schema:
+            type: string
+          description: The keyword to search on entities
+      responses:
+        '400':
+          description: Invalid request
+        '200':
+          description: Search successfull
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/Team'
+                - $ref: '#/components/schemas/Driver'
+                - $ref: '#/components/schemas/Event'
+                - $ref: '#/components/schemas/RaceResult'
+
+components:
+  schemas:
+    TeamRequest: 
+      type: object
+      properties:
+        fullTeamName: 
+          type: string
+        base: 
+          type: string
+        teamChief: 
+          type: string
+        technicalChief: 
+          type: string
+        chassis: 
+          type: string
+        powerUnit: 
+          type: string
+        firstTeamEntry: 
+          type: string
+        worldChampionships: 
+          type: number
+        highestRaceFinish: 
+          type: string
+        polePositions: 
+          type: number
+        fastestLaps: 
+          type: number
+        shortName: 
+          type: string
+    Team:
+      allOf: 
+      - $ref: '#/components/schemas/TeamRequest'
+      - type: object
+        required:
+        - id
+        properties:
+          id:
+            type: string
+    DriverRequest:
+      type: object
+      properties:
+        name: 
+          type: string
+        biography: 
+          type: string
+        team: 
+          type: string
+        country: 
+          type: string
+        podiums: 
+          type: number
+        points: 
+          type: number
+        grandsPrixEntered: 
+          type: number
+        worldChampionships: 
+          type: string
+        highestRaceFinish: 
+          type: string
+        highestGridPosition: 
+          type: number
+        dateOfBirth: 
+          type: string
+        placeOfBirth: 
+          type: string
+    Driver:
+      allOf: 
+      - $ref: '#/components/schemas/DriverRequest'
+      - type: object
+        required:
+        - id
+        properties:
+          id:
+            type: string
+    EventRequest:
+      type: object
+      properties:
+          title: 
+            type: string
+          pos: 
+            type: number
+          no: 
+            type: string
+          driver: 
+            type: string
+          car: 
+            type: string
+          lap: 
+            type: number
+          timeRetired: 
+            type: number
+    Event:
+      allOf: 
+      - $ref: '#/components/schemas/EventRequest'
+      - type: object
+        required:
+        - id
+        properties:
+          id:
+            type: string
+    RaceRequest:
+      type: object
+      properties:
+        startDate: 
+          type: string
+        endDate: 
+          type: string
+        status: 
+          type: string
+        raceEvent: 
+          type: string
+    Race:
+      allOf: 
+      - $ref: '#/components/schemas/RaceRequest'
+      - type: object
+        required:
+        - id
+        properties:
+          id:
+            type: string
+    RaceResultRequest:
+      type: object
+      properties:
+        title: 
+          type: string
+        pos: 
+          type: number
+        no: 
+          type: string
+        driver: 
+          type: string
+        car: 
+          type: string
+        lap: 
+          type: number
+        timeRetired: 
+          type: number
+    RaceResult:
+      allOf: 
+      - $ref: '#/components/schemas/RaceResultRequest'
+      - type: object
+        required:
+        - id
+        properties:
+          id:
+            type: string
+    SearchResponse:
+      type: object 
+      properties:
+        drivers: 
+          allOf:
+            - $ref: '#/components/schemas/Driver'
+        teams: 
+          allOf:
+            - $ref: '#/components/schemas/Team'
+        events: 
+          allOf:
+            - $ref: '#/components/schemas/Event'
+        results: 
+          allOf:
+            - $ref: '#/components/schemas/RaceResult'
+      
+  securitySchemes:
+    jwt_token:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT  
+
+security: 
+  - jwt_token: []

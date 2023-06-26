@@ -1,0 +1,3 @@
+[submodule "app"]
+	path = app
+	url = github.com-denny:nguyentruongtuan/formula1.git
