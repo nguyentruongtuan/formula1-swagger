@@ -16,7 +16,7 @@ services:
   dbmigration:
     build:
       context: ./app
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     environment:
       - APP_PORT=3000
       - DATABASE_PORT=27017
