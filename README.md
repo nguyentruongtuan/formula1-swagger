@@ -1,6 +1,12 @@
 # Formula1 API system
 A demo restful API 
 
+# Prepare
+
+Get the source
+```
+git clone --recurse-submodules https://github.com/nguyentruongtuan/formula1-swagger.git
+```
 
 # Setup
 
